@@ -9,7 +9,7 @@
 // con difficoltà 1 => tra 1 e 80
 // con difficoltà 2 => tra 1 e 50
 
-for ( var i = 1; i <= 20; i++) {
+for ( var i = 1; i <= 100; i++) {
     document.getElementById(`campo`).innerHTML += `<div class="cella">${i}</div>`;
 }
 
@@ -31,13 +31,23 @@ function inArray(arr, el) {
 }
 
 var posizioniBombe = [];
+var punteggio = 0;
 
 do {
-    var posizioneRandom = randomNumber(1, 20);
+    var posizioneRandom = randomNumber(1, 100);
 
     if (!inArray(posizioniBombe, posizioneRandom)) {
         posizioniBombe.push(posizioneRandom);
     }
-} while (posizioniBombe.length < 5)
+} while (posizioniBombe.length < 16);
 
-console.log(posizioniBombe);
+// creo degli eventi al click delle celle (cliccabili una sola volta)
+document.getElementById(`campo`).addEventListener('click', 
+    function(event) {
+        event.target.classList.add(`click`);
+        punteggio += 1.195;
+        if ( inArray(posizioniBombe, event.target.innerHTML)) {
+            alert("Partita terminata. hai totalizzato: " + parseInt(punteggio - 1) + " punti");
+        }
+    }
+);
