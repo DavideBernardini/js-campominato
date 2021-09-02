@@ -32,13 +32,6 @@ function inArray(arr, el) {
 
 var posizioniBombe = [];
 
-// for (var i = 0; i < 5; i++) {
-//     var numeroCasuale = randomNumber(1, 20);
-//     if ( !inArray(posizioniBombe, numeroCasuale) ) {
-//         posizioniBombe.push(numeroCasuale);
-//     }
-// }
-
 do {
     var posizioneRandom = randomNumber(1, 20);
 
