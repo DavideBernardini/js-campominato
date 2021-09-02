@@ -1,0 +1,29 @@
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #282a35;
+}
+
+.campo {
+    width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.cella {
+    height: 100px;
+    width: 100px;
+    background-color: #04AA6D ;
+    border: 1px solid #000;
+    font-size: 20px;
+    padding: 5px;
+}
+.cella.click {
+    background-color: #ff7d7d;
+}
