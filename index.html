@@ -8,16 +8,32 @@
         <!-- google font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet"> 
         <!-- /google font -->
         <title>Campo Minato</title>
     </head>
     <body>
+        <div class="container">
+            <!-- form gioco -->
+            <div id="form-gioco">
+                <h2 class="title">Scegli il livello di difficoltà:</h2>
+                <select name="scelta-difficoltà" id="scelta-difficoltà">
+                    <option value="basso">basso</option>
+                    <option value="medio">medio</option>
+                    <option value="alto">alto</option>
+                </select>
+                <button id="start">Inizia la partita</button>
+            </div>
+            <!-- /form gioco -->
+            
+            <!-- campo da gioco -->
+            <div id="campo"></div>
+            <!-- /campo da gioco -->
 
-        <div id="campo" class="campo"></div>
-
-        <!-- js -->
-        <script src="js/main.js"></script>
-        <!-- /js -->
+            <!-- js -->
+            <script src="js/main.js"></script>
+            <!-- /js -->
+        </div>
+        
     </body>
 </html>

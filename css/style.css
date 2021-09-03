@@ -4,29 +4,82 @@
     padding: 0;
     box-sizing: border-box;
 }
-/* common */
+/* typo */
 body {
     background-color: #282a35;
     font-family: 'Roboto', sans-serif;
 }
 
-.campo {
-    width: 700px;
-    margin: auto;
-    margin-top: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    border-radius: 8px;
-    outline: 1px solid black;
-    overflow: hidden;
+/* form gioco */
+.container {
+    width: 100%;
+    text-align: center;
+}
+#form-gioco {
+    display: inline-block;
+    background-color: #fff4a3;
+    padding: 25px 40px;
+    border-radius: 15px;
+    margin-top: 100px;
+}
+#form-gioco.nascondi {
+    display: none;
+}
+.title {
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: #242731;
+}
+#scelta-difficoltà {
+    width: 90px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #282a35;
+    border: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    margin-right: 20px;
+    border-radius: 20px;
+}
+#scelta-difficoltà:hover {
+    background-color: #000;
+}
+#start.nascondi {
+    display: none;
+}
+#start {
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 20px;
+    background-color: #04aa6d;
+    font-weight: 700;
+    color: #fff;
+}
+#start:hover {
+    background-color: #059862;
 }
 
+#campo {
+    width: 700px;
+    margin: 40px auto 20px;
+    display: none;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    overflow: hidden;
+}
+#campo.mostra {
+    display: flex;
+}
 .cella {
     height: 70px;
     width: 70px;
     background-color: #04AA6D ;
-    border: 1px solid #000;
-    padding: 5px;
+    border: 1.5px solid #282a35;
+    padding: 6px;
+    text-align: start;
+    font-weight: 700;
+    color: #282a35;
 }
 .cella.clicked {
     background-color: #ff7d7d;

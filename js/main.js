@@ -1,14 +1,3 @@
-// Il computer deve generare 16 numeri casuali tra 1 e 100 (bombe).
-// I numeri non possono essere duplicati.
-// In seguito il giocatore clicca sulle celle numerate (non può cliccare più volte sulla stessa cella)
-// La partita termina quando il giocatore clicca su un numero “vietato” o clicca su tutte le celle che non sono delle bombe.
-// Al termine della partita il software deve comunicare il punteggio.
-// BONUS: (da fare solo se funziona tutto il resto)
-// all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
-// con difficoltà 0 => tra 1 e 100
-// con difficoltà 1 => tra 1 e 80
-// con difficoltà 2 => tra 1 e 50
-
 // funzione per creare il campo di gioco
 function creaCampo(nCelle) {
     for ( let i = 1; i <= nCelle; i++) {
@@ -32,26 +21,38 @@ function inArray(arr, el) {
     return false;
 }
 
-// variabili in base alla difficoltà
-var difficoltà = prompt("Scegli un livello di difficoltà tra bassa, media o alta");
+// variabili in base alla difficoltà scelta dall'utente nella select e creazione campo da gioco
+var difficoltà = ``;
 
-switch (difficoltà) {
-    case "bassa":
-        var numCelle = 100;
-        var punti = 1.195;
-        break;
-    case "media":
-        var numCelle = 80;
-        var punti = 1.569;
-        break;
-    case "alta":
-        var numCelle = 50;
-        var punti = 2.949;
-}
+document.getElementById(`start`).addEventListener('click', 
+    function() {
+        difficoltà = document.getElementById(`scelta-difficoltà`).value;
+        switch (difficoltà) {
+        case "basso":
+            var numCelle = 100;
+            var punti = 1.195;
+            break;
+        case "medio":
+            var numCelle = 80;
+            var punti = 1.569;
+            break;
+        case "alto":
+            var numCelle = 50;
+            var punti = 2.949;
+        }
+
+        var possibilità = numCelle - numBombe;
+
+        creaCampo(numCelle);
+
+        document.getElementById(`campo`).classList.add(`mostra`);
+        document.getElementById(`form-gioco`).classList.add(`nascondi`);
+        document.getElementById(`start`).classList.add(`nascondi`);
+    }
+);
 
 // variabili di base
 var numBombe = 16;
-var possibilità = numCelle - numBombe;
 var posizioniBombe = [];
 
 while (posizioniBombe.length < 16) {
@@ -62,9 +63,7 @@ while (posizioniBombe.length < 16) {
     }
 } 
 
-creaCampo(numCelle);
-
-// eventi al click delle celle (cliccabili una sola volta)
+// eventi al click delle celle
 
 var numeriValidi = [];
 var punteggio = 0;
