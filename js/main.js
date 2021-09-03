@@ -9,7 +9,7 @@
 // con difficoltà 1 => tra 1 e 80
 // con difficoltà 2 => tra 1 e 50
 
-for ( var i = 1; i <= 100; i++) {
+for ( let i = 1; i <= 100; i++) {
     document.getElementById(`campo`).innerHTML += `<div class="cella">${i}</div>`;
 }
 
@@ -20,7 +20,7 @@ function randomNumber(min, max) {
 }
 // funzione che restituisce true se un elementro è contenuto in un array, altrimenti false
 function inArray(arr, el) {
-    var count = 0;
+    let count = 0;
     while ( count < arr.length ) {
         if ( arr[count] == el ) {
             return true;
@@ -30,8 +30,12 @@ function inArray(arr, el) {
     return false;
 }
 
+// variabili di base
+var numBombe = 16;
+var numCelle = 100;
+var possibilità = numCelle - numBombe;
+
 var posizioniBombe = [];
-var punteggio = 0;
 
 do {
     var posizioneRandom = randomNumber(1, 100);
@@ -41,13 +45,30 @@ do {
     }
 } while (posizioniBombe.length < 16);
 
+
 // creo degli eventi al click delle celle (cliccabili una sola volta)
+// La partita termina quando il giocatore clicca su un numero “vietato” o clicca su tutte le celle che non sono delle bombe.
+// Al termine della partita il software deve comunicare il punteggio.
+var numeriValidi = [];
+var punteggio = 0;
+
 document.getElementById(`campo`).addEventListener('click', 
     function(event) {
-        event.target.classList.add(`click`);
-        punteggio += 1.195;
-        if ( inArray(posizioniBombe, event.target.innerHTML)) {
-            alert("Partita terminata. hai totalizzato: " + parseInt(punteggio - 1) + " punti");
+
+        var numCliccato = event.target.innerHTML;
+
+        if ( inArray(posizioniBombe, numCliccato)) {
+            alert("Partita terminata. Hai totalizzato: " + parseInt(punteggio) + " punti.");
+        } else if ( inArray(numeriValidi, numCliccato) ) {
+            alert("Hai già cliccato");
+        } else {
+            event.target.classList.add(`clicked`);
+            numeriValidi.push(numCliccato);
+            punteggio += 1.195;
+            if (numeriValidi.length == possibilità) {
+                alert("Hai ottenuto il punteggio massimo di " + parseInt(punteggio) + ". Bravo!");
+            }
         }
     }
 );
+

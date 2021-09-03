@@ -4,26 +4,30 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+/* common */
 body {
     background-color: #282a35;
+    font-family: 'Roboto', sans-serif;
 }
 
 .campo {
-    width: 1000px;
+    width: 700px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
+    border-radius: 8px;
+    outline: 1px solid black;
+    overflow: hidden;
 }
+
 .cella {
-    height: 100px;
-    width: 100px;
+    height: 70px;
+    width: 70px;
     background-color: #04AA6D ;
     border: 1px solid #000;
-    font-size: 20px;
     padding: 5px;
 }
-.cella.click {
+.cella.clicked {
     background-color: #ff7d7d;
 }
