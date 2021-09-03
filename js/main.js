@@ -9,11 +9,13 @@
 // con difficoltà 1 => tra 1 e 80
 // con difficoltà 2 => tra 1 e 50
 
-for ( let i = 1; i <= 100; i++) {
-    document.getElementById(`campo`).innerHTML += `<div class="cella">${i}</div>`;
+// funzione per creare il campo di gioco
+function creaCampo(nCelle) {
+    for ( let i = 1; i <= nCelle; i++) {
+        document.getElementById(`campo`).innerHTML += `<div class="cella">${i}</div>`;
+    }
 }
 
-//* genero 16 numeri casuali tra 1 e 100 (bombe), senza duplicati.
 // funzione che crea numeri random entro un range
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
@@ -34,21 +36,21 @@ function inArray(arr, el) {
 var numBombe = 16;
 var numCelle = 100;
 var possibilità = numCelle - numBombe;
-
+var punti = 1.195;
 var posizioniBombe = [];
 
-do {
+while (posizioniBombe.length < 16) {
     var posizioneRandom = randomNumber(1, 100);
 
-    if (!inArray(posizioniBombe, posizioneRandom)) {
+    if (inArray(posizioniBombe, posizioneRandom) == false) {
         posizioniBombe.push(posizioneRandom);
     }
-} while (posizioniBombe.length < 16);
+} 
 
+creaCampo(numCelle);
 
 // creo degli eventi al click delle celle (cliccabili una sola volta)
-// La partita termina quando il giocatore clicca su un numero “vietato” o clicca su tutte le celle che non sono delle bombe.
-// Al termine della partita il software deve comunicare il punteggio.
+
 var numeriValidi = [];
 var punteggio = 0;
 
@@ -58,13 +60,20 @@ document.getElementById(`campo`).addEventListener('click',
         var numCliccato = event.target.innerHTML;
 
         if ( inArray(posizioniBombe, numCliccato)) {
+
             alert("Partita terminata. Hai totalizzato: " + parseInt(punteggio) + " punti.");
+            window.location.reload();
+
         } else if ( inArray(numeriValidi, numCliccato) ) {
+
             alert("Hai già cliccato");
+
         } else {
+
             event.target.classList.add(`clicked`);
             numeriValidi.push(numCliccato);
             punteggio += 1.195;
+
             if (numeriValidi.length == possibilità) {
                 alert("Hai ottenuto il punteggio massimo di " + parseInt(punteggio) + ". Bravo!");
             }
