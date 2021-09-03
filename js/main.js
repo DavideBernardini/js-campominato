@@ -32,11 +32,26 @@ function inArray(arr, el) {
     return false;
 }
 
+// variabili in base alla difficoltà
+var difficoltà = prompt("Scegli un livello di difficoltà tra bassa, media o alta");
+
+switch (difficoltà) {
+    case "bassa":
+        var numCelle = 100;
+        var punti = 1.195;
+        break;
+    case "media":
+        var numCelle = 80;
+        var punti = 1.569;
+        break;
+    case "alta":
+        var numCelle = 50;
+        var punti = 2.949;
+}
+
 // variabili di base
 var numBombe = 16;
-var numCelle = 100;
 var possibilità = numCelle - numBombe;
-var punti = 1.195;
 var posizioniBombe = [];
 
 while (posizioniBombe.length < 16) {
@@ -49,7 +64,7 @@ while (posizioniBombe.length < 16) {
 
 creaCampo(numCelle);
 
-// creo degli eventi al click delle celle (cliccabili una sola volta)
+// eventi al click delle celle (cliccabili una sola volta)
 
 var numeriValidi = [];
 var punteggio = 0;
