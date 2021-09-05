@@ -1,7 +1,7 @@
 // funzione per creare il campo di gioco
 function creaCampo(nCelle) {
     for ( let i = 1; i <= nCelle; i++) {
-        document.getElementById(`campo`).innerHTML += `<div class="cella">${i}</div>`;
+        document.getElementById(`campo`).innerHTML += `<div id="${i}" class="cella">${i}</div>`;
     }
 }
 // funzione che crea numeri random entro un range
@@ -22,9 +22,6 @@ function inArray(arr, el) {
 
 // variabili di base
 var numBombe = 16;
-
-
- 
 
 // variabili in base alla difficoltà scelta dall'utente nella select e creazione campo da gioco
 var difficoltà = ``;
@@ -77,17 +74,19 @@ document.getElementById(`campo`).addEventListener('click',
 
         var numCliccato = event.target.innerHTML;
 
-        // se viene cliccata una cella con a cui corrisponde una bomba
+        // se viene cliccata una cella a cui corrisponde una bomba
         if ( inArray(posizioniBombe, numCliccato)) {
-            event.target.classList.add(`bomba`);
-            event.target.innerHTML += `<i class="fas fa-bomb"></i>`;
-            document.getElementById(`totale-punti`).innerHTML += `Hai totalizzato: <span class="numero">${parseInt(punteggio)}</span> punti.`;
-            document.getElementById(`campo`).classList.remove(`mostra`);
-            document.getElementById(`risultato`).classList.add(`mostra`);
+            for (var i = 0; i < numBombe; i++) {
 
-        // se viene cliccata più si una volta
-        } else if ( inArray(numeriValidi, numCliccato) ) {
-            alert("Hai già cliccato su questa cella.");
+                var idCelleBombe = posizioniBombe[i].toString();
+                document.getElementById(idCelleBombe).classList.add(`bomba`);
+                document.getElementById(idCelleBombe).innerHTML += `<i class="fas fa-bomb"></i>`;
+            }
+
+            document.getElementById(`totale-punti`).innerHTML += `Hai totalizzato: <span class="numero">${parseInt(punteggio)}</span> punti.`;
+
+            document.getElementById(`campo`).innerHTML += `<div class="blocco-gioco"></div>`;
+            document.getElementById(`risultato`).classList.add(`mostra`);
 
         // se viene cliccata una cella valida/vuota
         } else {

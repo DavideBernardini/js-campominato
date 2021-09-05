@@ -13,16 +13,16 @@ body {
 /* form gioco */
 .container {
     width: 100%;
-    display: flex;
+    text-align: center;
 }
 #form-gioco, #risultato {
     padding: 25px 40px;
     border-radius: 15px;
-    margin: 100px auto;
+    margin: 100px 0 40px;
     text-align: center;
 }
 #form-gioco {
-    display: block;
+    display: inline-block;
     background-color: #fff4a3;
 }
 #form-gioco.nascondi {
@@ -69,9 +69,17 @@ body {
     flex-wrap: wrap;
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
 }
 #campo.mostra {
     display: flex;
+}
+.blocco-gioco {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 .cella {
     height: 70px;
@@ -91,7 +99,7 @@ body {
     transform: translate(-50%, -50%);
 }
 .cella.clicked {
-    background-color: #78d1d1;
+    background-color: #96d4d4;
 }
 .cella.bomba {
     background-color: #ff7d7d;
@@ -100,13 +108,13 @@ body {
 /* risultato */
 #risultato {
     background-color: #96d4d4;
-    display:none
+    display: none;
 }
 #risultato.mostra {
-    display: block;
+    display: inline-block;
 }
 #risultato.massimo {
-    display: block;
+    display: inline-block;
     background-color: #ffcca3;
 }
 #totale-punti {
