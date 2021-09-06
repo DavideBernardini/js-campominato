@@ -74,13 +74,7 @@ body {
 #campo.mostra {
     display: flex;
 }
-.blocco-gioco {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-}
+
 .cella {
     height: 70px;
     width: 70px;

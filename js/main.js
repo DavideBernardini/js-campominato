@@ -69,40 +69,42 @@ document.getElementById(`start`).addEventListener('click',
 var numeriValidi = [];
 var punteggio = 0;
 
-document.getElementById(`campo`).addEventListener('click', 
-    function(event) {
+// funzione da inserire nell'evento click
+function gioco(event) {
 
-        var numCliccato = event.target.innerHTML;
+    var numCliccato = event.target.innerHTML;
 
-        // se viene cliccata una cella a cui corrisponde una bomba
-        if ( inArray(posizioniBombe, numCliccato)) {
-            for (var i = 0; i < numBombe; i++) {
+    // se viene cliccata una cella a cui corrisponde una bomba
+    if ( inArray(posizioniBombe, numCliccato)) {
+        for (var i = 0; i < numBombe; i++) {
 
-                var idCelleBombe = posizioniBombe[i].toString();
-                document.getElementById(idCelleBombe).classList.add(`bomba`);
-                document.getElementById(idCelleBombe).innerHTML += `<i class="fas fa-bomb"></i>`;
-            }
+            var idCelleBombe = posizioniBombe[i].toString();
+            document.getElementById(idCelleBombe).classList.add(`bomba`);
+            document.getElementById(idCelleBombe).innerHTML += `<i class="fas fa-bomb"></i>`;
+        }
 
-            document.getElementById(`totale-punti`).innerHTML += `Hai totalizzato: <span class="numero">${parseInt(punteggio)}</span> punti.`;
+        // risultato fine gioco
+        document.getElementById(`totale-punti`).innerHTML += `Hai totalizzato: <span class="numero">${parseInt(punteggio)}</span> punti.`;
+        document.getElementById(`risultato`).classList.add(`mostra`);
 
-            document.getElementById(`campo`).innerHTML += `<div class="blocco-gioco"></div>`;
-            document.getElementById(`risultato`).classList.add(`mostra`);
+        // rimuovo evento
+        document.getElementById(`campo`).removeEventListener('click', gioco);
+    // se viene cliccata una cella valida/vuota
+    } else {
+        event.target.classList.add(`clicked`);            
+        numeriValidi.push(numCliccato);
+        punteggio += punti;
 
-        // se viene cliccata una cella valida/vuota
-        } else {
-            event.target.classList.add(`clicked`);            
-            numeriValidi.push(numCliccato);
-            punteggio += punti;
+        // se tutte le celle vuote/valide vengono cliccate
+        if (numeriValidi.length == numCelleLibere) {
 
-            // se tutte le celle vuote/valide vengono cliccate
-            if (numeriValidi.length == numCelleLibere) {
-
-                document.getElementById(`risultato`).classList.add(`massimo`);
-                document.getElementById(`totale-punti`).innerHTML += `Hai ottenuto il punteggio massimo di: <span class="numero">${parseInt(punteggio)}</span> punti. Complimenti!`;
-            }
+            document.getElementById(`risultato`).classList.add(`massimo`);
+            document.getElementById(`totale-punti`).innerHTML += `Hai ottenuto il punteggio massimo di: <span class="numero">${parseInt(punteggio)}</span> punti. Complimenti!`;
         }
     }
-);
+}
+// evento click
+document.getElementById(`campo`).addEventListener('click', gioco);
 
 // evento per far ricominciare il gioco
 document.getElementById(`restart`).addEventListener('click', 
